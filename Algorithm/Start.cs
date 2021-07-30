@@ -389,7 +389,7 @@ namespace Algorithm
 
             Test.Ranking(Test.student_list);
 
-            Console.WriteLine("세영");
+            Console.WriteLine("세영1");
         }
     }
 }
