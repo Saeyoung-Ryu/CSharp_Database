@@ -388,6 +388,8 @@ namespace Algorithm
             //Test.Guess_3(Test.student_list[2]);
 
             Test.Ranking(Test.student_list);
+
+            Console.WriteLine("세영");
         }
     }
 }
