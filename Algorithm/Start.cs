@@ -242,154 +242,66 @@ namespace Algorithm
         }
     }
 
-
-    class Student 
+    class Program
     {
-        public string name;
-        public int correctNumber;
+        static int a = 0;
 
-        public List<int> answer = new List<int>();
+        static Monster boss = new Monster(1000);
+        static int[] arrayint = new int[10];
 
-        public Student(string _name)
+        static void Addhealth1(Monster monster)
         {
-            name = _name;
-        }        
-    }
-
-    class Test
-    {
-        public static int numberOfQuestions;
-        public static List<Student> student_list = new List<Student>();
-        public static List<int> answer_list = new List<int>();
-
-        static int ans = 1;
-
-        public static void CreateStudent(string name)
-        {
-            Student student = new Student(name);
-            student_list.Add(student);
+            monster.health++;
         }
-        public static void CreateTest(int _numberOfQuestions)
+
+        static void Addvalue_1(int value)
         {
-            numberOfQuestions = _numberOfQuestions;
-
-            Random ran = new Random();
-
-            for (int i = 0; i < numberOfQuestions; i++)
-            {
-                
-                int ans = ran.Next(1, 6);
-
-                answer_list.Add(ans);
-            }
+            value++;
         }
-        public static void Guess_1(Student student)
+
+        static void SwapMethod(ref Monster monster1, ref Monster monster2)
         {
-            for (int i = 1; i <= numberOfQuestions; i++)
-            {
-                student.answer.Add(ans);
-
-                if(ans != 5)
-                {
-                    ans++;
-                }
-                else
-                {
-                    ans = 1;
-                }
-
-            }
-
-            ans = 1;
+            Monster monster3 = new Monster(3);
+            monster3 = monster1;
+            monster1 = monster2;
+            monster2 = monster3;
         }
-        public static void Guess_2(Student student)
-        {
-            for (int i = 1; i <= numberOfQuestions; i++)
-            {
-                if(i % 2 == 1)
-                {
-                    student.answer.Add(2);
-                }
-                else
-                {
-                    student.answer.Add(ans);
-
-                    if (ans != 5)
-                    {
-                        ans++;
-                    }
-                    else
-                    {
-                        ans = 1;
-                    }
-                }
-            }
-
-            ans = 1;
-        }
-        public static void Guess_3(Student student)
-        {
-            int[] order = new int[5] { 3, 1, 2, 4, 5 };
-
-            for (int i = 1; i <= numberOfQuestions; i++)
-            {
-                int num = 0;
-
-                for (int j = 0; j < 2; j++)
-                {
-                    student.answer.Add(order[num]);
-                    i++;
-                }
-
-                if(num != order.Length - 1)
-                {
-                    num++;
-                }
-                else
-                {
-                    num = 0;
-                }
-            }
-        }
-        public static void Ranking(List<Student> student_list)
-        {
-            for (int j = 0; j < student_list.Count; j++)
-            {
-                for (int i = 0; i < numberOfQuestions; i++)
-                {
-                    if (student_list[j].answer[i] == answer_list[i])
-                    {
-                        student_list[j].correctNumber++;
-                    }
-                }
-            }
-
-            foreach (var item in student_list)
-            {
-                Console.WriteLine(item.name + " 학생이 맞은 문제 수는" + item.correctNumber);
-            }
-        }
-    }
-
-    class Start
-    {
-        
 
         static void Main(string[] args)
         {
-            Test.CreateStudent("가");
-            Test.CreateStudent("나");
-            //Test.CreateStudent("다");
+            //1번
+            //Monster monster1 = new Monster(100);
+            //Monster monster2 = new Monster(120);
 
-            Test.CreateTest(20);
+            //Monster.Turn_Zombie(ref monster1);
 
-            Test.Guess_1(Test.student_list[0]);
-            Test.Guess_2(Test.student_list[1]);
-            //Test.Guess_3(Test.student_list[2]);
 
-            Test.Ranking(Test.student_list);
+            //Console.WriteLine(monster1.health); // ref 를 안넣으면, 객체 전체를 집어넣었을떄 복사값이 들어가게 된다.
 
-            Console.WriteLine("세영3");
+
+            //2번
+            //Monster monster1 = new Monster(100);
+            //monster1 = boss;
+            //Addhealth1(ref boss);
+            ////boss.health++;
+            //Console.WriteLine(monster1.health);
+            //Console.WriteLine(boss.health); // 참조값(class)
+
+            //int b;
+            //b = a;
+            ////Addvalue_1(a); // 함수 안에 들어가는 a는 복사가 된 a
+            //a++;
+            //Console.WriteLine(a);
+            //Console.WriteLine(b); // 복사값(struct), int 는 struct 이다!
+
+            //3번
+            Monster monster1 = new Monster(1); // 객체생성
+            Monster monster2 = new Monster(2); // 객체 전체를 집어넣을때는 복사값이 들어가게 된다!
+
+            SwapMethod(ref monster1, ref monster2);
+
+            Console.WriteLine(monster1.health);
+            Console.WriteLine(monster2.health);
         }
     }
 }
